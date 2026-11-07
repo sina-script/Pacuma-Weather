@@ -2,7 +2,33 @@ import React from "react";
 import "./App.css";
 
 function App() {
-  const cities = [{ name: "", temp: "", desc: "" }];
+const cities = [
+  { name: "Tehran", temp: 23, desc: "Scattered clouds with a breeze", icon: "⛅", min: 18, max: 26 },
+  { name: "Karaj", temp: 21, desc: "Bright and clear sunny skies", icon: "☀️", min: 16, max: 24 },
+  { name: "Qazvin", temp: 19, desc: "Cool winds blowing through city", icon: "💨", min: 13, max: 22 },
+  { name: "Pardis", temp: 18, desc: "Overcast skies with grey clouds", icon: "☁️", min: 12, max: 20 },
+  { name: "Rudehen", temp: 17, desc: "Gentle morning breeze and chill", icon: "🍃", min: 11, max: 19 },
+  { name: "Bumehen", temp: 17, desc: "Partly cloudy with fresh air", icon: "⛅", min: 11, max: 19 },
+  { name: "Qom", temp: 27, desc: "Warm and bright sunny weather", icon: "☀️", min: 20, max: 30 },
+  { name: "Tabriz", temp: 14, desc: "Light rain showers falling down", icon: "🌧️", min: 9, max: 17 },
+  { name: "Mashhad", temp: 20, desc: "Clear sky and calm atmosphere", icon: "☀️", min: 14, max: 23 },
+  { name: "Sabzevar", temp: 24, desc: "Sunny day with warm sunshine", icon: "☀️", min: 17, max: 27 },
+  { name: "Shiraz", temp: 25, desc: "Mild sunshine and pleasant warmth", icon: "☀️", min: 17, max: 28 },
+  { name: "Isfahan", temp: 24, desc: "Few clouds across the sky", icon: "🌤️", min: 16, max: 27 },
+  { name: "Babol", temp: 22, desc: "Humid air and steady rain", icon: "🌧️", min: 17, max: 24 },
+  { name: "Rasht", temp: 20, desc: "Heavy rain pouring all day", icon: "🌧️", min: 16, max: 22 },
+  { name: "Sari", temp: 21, desc: "Intermittent light rain and damp", icon: "🌦️", min: 16, max: 23 },
+  { name: "Yazd", temp: 28, desc: "Dry sunshine and clear air", icon: "☀️", min: 20, max: 31 },
+  { name: "Kerman", temp: 22, desc: "Clear skies and calm weather", icon: "☀️", min: 13, max: 25 },
+  { name: "Ahvaz", temp: 33, desc: "Very hot and clear sunlight", icon: "🔥", min: 25, max: 36 },
+  { name: "Kish", temp: 31, desc: "Tropical humidity and bright sun", icon: "🌴", min: 26, max: 33 },
+  { name: "Bandar Abbas", temp: 32, desc: "Hazy sunshine and warm breeze", icon: "🌤️", min: 26, max: 34 },
+  { name: "Hamedan", temp: 15, desc: "Chilly breeze and crisp air", icon: "🌬️", min: 8, max: 18 },
+  { name: "Ardabil", temp: 11, desc: "Dense fog and cold temperature", icon: "🌫️", min: 6, max: 14 },
+  { name: "Urmia", temp: 16, desc: "Partly cloudy with cool winds", icon: "⛅", min: 10, max: 19 },
+  { name: "Kermanshah", temp: 20, desc: "Scattered clouds over the hills", icon: "🌤️", min: 13, max: 23 },
+];
+
 
   return (
     <div className="weather-wrapper" dir="ltr">
@@ -59,7 +85,7 @@ function App() {
                 <span className="temp-unit">°C</span>
               </div>
               <div className="high-low-bar"></div>
-              <p className="condition-status">Partly Cloudy • Gentle Breeze</p>
+              <p className="condition-status">Scattered clouds over the hills</p>
             </div>
           </section>
 
