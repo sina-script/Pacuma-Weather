@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import "./App.css";
+import "./components/NoCity/NoCity";
+import NoCity from "./components/NoCity/NoCity";
 
 function App() {
   const [city, setCity] = useState("");
   const [mainCity, setMainCity] = useState(null);
+  const [noCity, setNoCity] = useState(false);
 
   const showFoundCity = () => {
     const newMainCity = cities.find((item) => {
       return item.name.toLowerCase() === city.toLowerCase();
     });
 
-    setMainCity(newMainCity);
+    if (newMainCity) {
+      setMainCity(newMainCity);
+    } else {
+      setNoCity(true);
+    }
   };
 
   const cities = [
@@ -809,140 +816,190 @@ function App() {
   ];
 
   return (
-    <div className="weather-wrapper" dir="ltr">
-      <div className="glow-sphere sphere-purple" />
-      <div className="glow-sphere sphere-dark" />
+    <>
+      <div className="weather-wrapper" dir="ltr">
+        <div className="glow-sphere sphere-purple" />
+        <div className="glow-sphere sphere-dark" />
 
-      <div className="weather-container">
-        <header className="app-header">
-          <div className="brand">
-            <h1 className="brand-title">AuraCast</h1>
-          </div>
-
-          <div className="search-bar-container">
-            <div className="input-group">
-              <svg
-                className="search-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-              <input
-                type="text"
-                className="city-input"
-                placeholder="Enter city name..."
-                value={city}
-                onChange={(event) => {
-                  setCity(event.target.value);
-                }}
-                onKeyUp={(event) => {
-                  if (event.key == "Enter") {
-                    showFoundCity();
-                  }
-                }}
-              />
+        <div className="weather-container">
+          <header className="app-header">
+            <div className="brand">
+              <h1 className="brand-title">AuraCast</h1>
             </div>
-            <button
-              type="button"
-              className="action-btn"
-              onClick={showFoundCity}
-            >
-              <span className="btn-glow-effect" />
-              <span className="btn-text">Search</span>
-              <svg
-                className="btn-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
+
+            <div className="search-bar-container">
+              <div className="input-group">
+                <svg
+                  className="search-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input
+                  type="text"
+                  className="city-input"
+                  placeholder="Enter city name..."
+                  value={city}
+                  onChange={(event) => {
+                    setCity(event.target.value);
+                  }}
+                  onKeyUp={(event) => {
+                    if (event.key == "Enter") {
+                      showFoundCity();
+                    }
+                  }}
+                />
+              </div>
+              <button
+                type="button"
+                className="action-btn"
                 onClick={showFoundCity}
               >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </header>
-
-        <main className="main-layout">
-          <section className="hero-card">
-            <div className="hero-info">
-              <span className="date-badge">Today</span>
-              <h2 className="city-title">{mainCity?mainCity.name:cities[0].name}</h2>
-              <div className="temp-display">
-                <span className="current-temp">{mainCity?mainCity.temp:cities[0].temp}</span>
-                <span className="temp-unit">°C</span>
-              </div>
-              <div className="high-low-bar"></div>
-              <p className="condition-status">
-                Scattered clouds over the hills
-              </p>
+                <span className="btn-glow-effect" />
+                <span className="btn-text">Search</span>
+                <svg
+                  className="btn-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  onClick={showFoundCity}
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
-          </section>
+          </header>
 
-          <section className="forecast-card">
-            <div className="forecast-header">
-              <h3 className="section-title">7-Day Forecast</h3>
-            </div>
+          <main className="main-layout">
+            <section className="hero-card">
+              <div className="hero-info">
+                <span className="date-badge">Today</span>
+                <h2 className="city-title">
+                  {mainCity ? mainCity.name : cities[0].name}
+                </h2>
+                <div className="temp-display">
+                  <span className="current-temp">
+                    {mainCity ? mainCity.temp : cities[0].temp}
+                  </span>
+                  <span className="temp-unit">°C</span>
+                </div>
+                <div className="high-low-bar"></div>
+                <p className="condition-status">
+                  Scattered clouds over the hills
+                </p>
+              </div>
+            </section>
 
-            <div className="forecast-list">
-              <div className="forecast-row active-day">
-                <span className="day-name">Sat</span>
-                <span className="day-icon">{mainCity?mainCity.satIcon:cities[0].satIcon}</span>
-                <span className="temp-range">
-                  <strong>{mainCity?mainCity.satMax:cities[0].satMax}</strong> / {mainCity?mainCity.satMin:cities[0].satMin}
-                </span>
+            <section className="forecast-card">
+              <div className="forecast-header">
+                <h3 className="section-title">7-Day Forecast</h3>
               </div>
-              <div className="forecast-row">
-                <span className="day-name">Sun</span>
-                <span className="day-icon">{mainCity?mainCity.sunIcon:cities[0].sunIcon}</span>
-                <span className="temp-range">
-                  <strong>{mainCity?mainCity.sunMax:cities[0].sunMax}</strong> / {mainCity?mainCity.sunMin:cities[0].sunMin}
-                </span>
+
+              <div className="forecast-list">
+                <div className="forecast-row active-day">
+                  <span className="day-name">Sat</span>
+                  <span className="day-icon">
+                    {mainCity ? mainCity.satIcon : cities[0].satIcon}
+                  </span>
+                  <span className="temp-range">
+                    <strong>
+                      {mainCity ? mainCity.satMax : cities[0].satMax}
+                    </strong>{" "}
+                    / {mainCity ? mainCity.satMin : cities[0].satMin}
+                  </span>
+                </div>
+                <div className="forecast-row">
+                  <span className="day-name">Sun</span>
+                  <span className="day-icon">
+                    {mainCity ? mainCity.sunIcon : cities[0].sunIcon}
+                  </span>
+                  <span className="temp-range">
+                    <strong>
+                      {mainCity ? mainCity.sunMax : cities[0].sunMax}
+                    </strong>{" "}
+                    / {mainCity ? mainCity.sunMin : cities[0].sunMin}
+                  </span>
+                </div>
+                <div className="forecast-row">
+                  <span className="day-name">Mon</span>
+                  <span className="day-icon">
+                    {mainCity ? mainCity.monIcon : cities[0].monIcon}
+                  </span>
+                  <span className="temp-range">
+                    <strong>
+                      {mainCity ? mainCity.monMax : cities[0].monMax}
+                    </strong>{" "}
+                    /{mainCity ? mainCity.monMin : cities[0].monMin}
+                  </span>
+                </div>
+                <div className="forecast-row">
+                  <span className="day-name">Tue</span>
+                  <span className="day-icon">
+                    {mainCity ? mainCity.tueIcon : cities[0].tueIcon}
+                  </span>
+                  <span className="temp-range">
+                    <strong>
+                      {mainCity ? mainCity.tueMax : cities[0].tueMax}
+                    </strong>{" "}
+                    / {mainCity ? mainCity.tueMin : cities[0].tueMin}
+                  </span>
+                </div>
+                <div className="forecast-row">
+                  <span className="day-name">Wed</span>
+                  <span className="day-icon">
+                    {mainCity ? mainCity.wedIcon : cities[0].wedIcon}
+                  </span>
+                  <span className="temp-range">
+                    <strong>
+                      {mainCity ? mainCity.wedMax : cities[0].wedMax}
+                    </strong>{" "}
+                    / {mainCity ? mainCity.wedMin : cities[0].wedMin}
+                  </span>
+                </div>
+                <div className="forecast-row">
+                  <span className="day-name">Thu</span>
+                  <span className="day-icon">
+                    {mainCity ? mainCity.thuIcon : cities[0].thuIcon}
+                  </span>
+                  <span className="temp-range">
+                    <strong>
+                      {mainCity ? mainCity.thuMax : cities[0].thuMax}
+                    </strong>{" "}
+                    / {mainCity ? mainCity.thuMin : cities[0].thuMin}
+                  </span>
+                </div>
+                <div className="forecast-row">
+                  <span className="day-name">Fri</span>
+                  <span className="day-icon">
+                    {mainCity ? mainCity.friIcon : cities[0].friIcon}
+                  </span>
+                  <span className="temp-range">
+                    <strong>
+                      {mainCity ? mainCity.friMax : cities[0].friMax}
+                    </strong>{" "}
+                    / {mainCity ? mainCity.friMin : cities[0].friMin}
+                  </span>
+                </div>
               </div>
-              <div className="forecast-row">
-                <span className="day-name">Mon</span>
-                <span className="day-icon">{mainCity?mainCity.monIcon:cities[0].monIcon}</span>
-                <span className="temp-range">
-                  <strong>{mainCity?mainCity.monMax:cities[0].monMax}</strong> /{mainCity?mainCity.monMin:cities[0].monMin}
-                </span>
-              </div>
-              <div className="forecast-row">
-                <span className="day-name">Tue</span>
-                <span className="day-icon">{mainCity?mainCity.tueIcon:cities[0].tueIcon}</span>
-                <span className="temp-range">
-                  <strong>{mainCity?mainCity.tueMax:cities[0].tueMax}</strong> / {mainCity?mainCity.tueMin:cities[0].tueMin}
-                </span>
-              </div>
-              <div className="forecast-row">
-                <span className="day-name">Wed</span>
-                <span className="day-icon">{mainCity?mainCity.wedIcon:cities[0].wedIcon}</span>
-                <span className="temp-range">
-                  <strong>{mainCity?mainCity.wedMax:cities[0].wedMax}</strong> / {mainCity?mainCity.wedMin:cities[0].wedMin}
-                </span>
-              </div>
-              <div className="forecast-row">
-                <span className="day-name">Thu</span>
-                <span className="day-icon">{mainCity?mainCity.thuIcon:cities[0].thuIcon}</span>
-                <span className="temp-range">
-                  <strong>{mainCity?mainCity.thuMax:cities[0].thuMax}</strong> / {mainCity?mainCity.thuMin:cities[0].thuMin}
-                </span>
-              </div>
-              <div className="forecast-row">
-                <span className="day-name">Fri</span>
-                <span className="day-icon">{mainCity?mainCity.friIcon:cities[0].friIcon}</span>
-                <span className="temp-range">
-                  <strong>{mainCity?mainCity.friMax:cities[0].friMax}</strong> / {mainCity?mainCity.friMin:cities[0].friMin}
-                </span>
-              </div>
-            </div>
-          </section>
-        </main>
+            </section>
+          </main>
+        </div>
       </div>
-    </div>
+
+      {noCity && (
+        <NoCity
+          onClose={() => {
+            setNoCity(false);
+            setCity("");
+          }}
+        ></NoCity>
+      )}
+    </>
   );
 }
 
