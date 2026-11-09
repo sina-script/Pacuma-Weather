@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
   const [city, setCity] = useState("");
-  const [mainCity, setMainCity] = useState();
+  const [mainCity, setMainCity] = useState(null);
 
   const showFoundCity = () => {
     const newMainCity = cities.find((item) => {
@@ -871,9 +871,9 @@ function App() {
           <section className="hero-card">
             <div className="hero-info">
               <span className="date-badge">Today</span>
-              <h2 className="city-title">{mainCity.name}</h2>
+              <h2 className="city-title">{mainCity?mainCity.name:cities[0].name}</h2>
               <div className="temp-display">
-                <span className="current-temp">{mainCity.temp}</span>
+                <span className="current-temp">{mainCity?mainCity.temp:cities[0].temp}</span>
                 <span className="temp-unit">°C</span>
               </div>
               <div className="high-low-bar"></div>
@@ -891,51 +891,51 @@ function App() {
             <div className="forecast-list">
               <div className="forecast-row active-day">
                 <span className="day-name">Sat</span>
-                <span className="day-icon">{mainCity.satIcon}</span>
+                <span className="day-icon">{mainCity?mainCity.satIcon:cities[0].satIcon}</span>
                 <span className="temp-range">
-                  <strong>{mainCity.satMax}</strong> / {mainCity.satMin}
+                  <strong>{mainCity?mainCity.satMax:cities[0].satMax}</strong> / {mainCity?mainCity.satMin:cities[0].satMin}
                 </span>
               </div>
               <div className="forecast-row">
                 <span className="day-name">Sun</span>
-                <span className="day-icon">{mainCity.sunIcon}</span>
+                <span className="day-icon">{mainCity?mainCity.sunIcon:cities[0].sunIcon}</span>
                 <span className="temp-range">
-                  <strong>{mainCity.sunMax}</strong> / {mainCity.sunMin}
+                  <strong>{mainCity?mainCity.sunMax:cities[0].sunMax}</strong> / {mainCity?mainCity.sunMin:cities[0].sunMin}
                 </span>
               </div>
               <div className="forecast-row">
                 <span className="day-name">Mon</span>
-                <span className="day-icon">{mainCity.monIcon}</span>
+                <span className="day-icon">{mainCity?mainCity.monIcon:cities[0].monIcon}</span>
                 <span className="temp-range">
-                  <strong>{mainCity.monMax}</strong> / {mainCity.monMin}
+                  <strong>{mainCity?mainCity.monMax:cities[0].monMax}</strong> /{mainCity?mainCity.monMin:cities[0].monMin}
                 </span>
               </div>
               <div className="forecast-row">
                 <span className="day-name">Tue</span>
-                <span className="day-icon">{mainCity.tueIcon}</span>
+                <span className="day-icon">{mainCity?mainCity.tueIcon:cities[0].tueIcon}</span>
                 <span className="temp-range">
-                  <strong>{mainCity.tueMax}</strong> / {mainCity.tueMin}
+                  <strong>{mainCity?mainCity.tueMax:cities[0].tueMax}</strong> / {mainCity?mainCity.tueMin:cities[0].tueMin}
                 </span>
               </div>
               <div className="forecast-row">
                 <span className="day-name">Wed</span>
-                <span className="day-icon">{mainCity.wedIcon}</span>
+                <span className="day-icon">{mainCity?mainCity.wedIcon:cities[0].wedIcon}</span>
                 <span className="temp-range">
-                  <strong>{mainCity.wedMax}</strong> / {mainCity.wedMin}
+                  <strong>{mainCity?mainCity.wedMax:cities[0].wedMax}</strong> / {mainCity?mainCity.wedMin:cities[0].wedMin}
                 </span>
               </div>
               <div className="forecast-row">
                 <span className="day-name">Thu</span>
-                <span className="day-icon">{mainCity.thuIcon}</span>
+                <span className="day-icon">{mainCity?mainCity.thuIcon:cities[0].thuIcon}</span>
                 <span className="temp-range">
-                  <strong>{mainCity.thuMax}</strong> / {mainCity.thuMin}
+                  <strong>{mainCity?mainCity.thuMax:cities[0].thuMax}</strong> / {mainCity?mainCity.thuMin:cities[0].thuMin}
                 </span>
               </div>
               <div className="forecast-row">
                 <span className="day-name">Fri</span>
-                <span className="day-icon">{mainCity.friIcon}</span>
+                <span className="day-icon">{mainCity?mainCity.friIcon:cities[0].friIcon}</span>
                 <span className="temp-range">
-                  <strong>{mainCity.friMax}</strong> / {mainCity.friMin}
+                  <strong>{mainCity?mainCity.friMax:cities[0].friMax}</strong> / {mainCity?mainCity.friMin:cities[0].friMin}
                 </span>
               </div>
             </div>
