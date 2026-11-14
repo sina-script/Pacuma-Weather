@@ -1,6 +1,6 @@
 import styles from "./NoCity.module.css";
 
-export default function NoCity({onClose}) {
+ function NoCity({onClose}) {
   return (
     <div className={styles.overlay}>
       <div
@@ -67,3 +67,6 @@ export default function NoCity({onClose}) {
     </div>
   );
 }
+
+
+export default NoCity;
